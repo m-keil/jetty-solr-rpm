@@ -4,15 +4,14 @@
 
 Name:			jetty-solr
 Version:		%{ver}
-Release:		13%{?dist}
+Release:		14%{?dist}
 Summary:		Solr
 License:		GPL
 URL:			http://lucene.apache.org/solr/
 Source:			http://apache.mirrors.lucidnetworks.net/lucene/solr/%{version}/solr-%{version}.tgz
 Source1:		jetty
 Source2:		jetty-solr
-Source3:		jetty-logging.xml
-Source4:		jetty.xml
+Source3:		jetty.xml
 BuildRoot:		%(mktemp -ud %{_tmppath}/%{name}-%{version}-%{release}-XXXXXX)
 Requires(pre):		shadow-utils
 Requires(post):		chkconfig
@@ -46,14 +45,12 @@ cp -pr licenses "%{buildroot}%{_prefix}"
 %__install -d "%{buildroot}%{_logprefix}"
 %__install -D -m0644  "%{SOURCE1}" %{buildroot}/etc/default/jetty
 %__install -D -m0755  "%{SOURCE2}" %{buildroot}/etc/init.d/jetty-solr
-%__install -D -m0644  "%{SOURCE3}" %{buildroot}%{_prefix}/jetty-solr/etc/jetty-logging.xml
-%__install -D -m0644  "%{SOURCE4}" %{buildroot}%{_prefix}/jetty-solr/etc/jetty.xml
+%__install -D -m0644  "%{SOURCE3}" %{buildroot}%{_prefix}/jetty-solr/etc/jetty.xml
 sed -i "s|JETTY_HOME_REPLACE|%{_prefix}|g" "%{buildroot}/etc/default/jetty"
 sed -i "s|JETTY_LOGS_REPLACE|%{_logprefix}|g" "%{buildroot}/etc/default/jetty"
 sed -i "s|JAVA_HOME_REPLACE|%{_javaprefix}|g" "%{buildroot}/etc/default/jetty"
 sed -i "s|./logs/|%{_logprefix}/|g" "%{buildroot}%{_prefix}/jetty-solr/etc/logging.properties"
-sed -i "s|./logs|%{_logprefix}|g" "%{buildroot}%{_prefix}/jetty-solr/etc/jetty-logging.xml"
-sed -i "s|logs/|%{_logprefix}/|g" "%{buildroot}%{_prefix}/jetty-solr/etc/jetty.xml"
+sed -i "s|./logs|%{_logprefix}|g" "%{buildroot}%{_prefix}/jetty-solr/etc/jetty.xml"
 
 %clean
 rm -rf $RPM_BUILD_ROOT
