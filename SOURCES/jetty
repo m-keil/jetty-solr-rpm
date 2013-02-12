@@ -3,7 +3,7 @@ JETTY_HOME=JETTY_HOME_REPLACE/jetty-solr
 JETTY_USER=solr
 JETTY_LOGS=JETTY_LOGS_REPLACE
 JETTY_PORT=8983
-JETTY_ARGS="--pre=etc/jetty-logging.xml etc/jetty-requestlog.xml $JETTY_ARGS"
+JETTY_ARGS="--pre=etc/jetty-logging.xml $JETTY_ARGS"
 
 # JAVA settings for jetty-solr
 JAVA_HOME=JAVA_HOME_REPLACE/java
