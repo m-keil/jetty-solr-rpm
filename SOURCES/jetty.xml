@@ -73,6 +73,9 @@
            <Item>
              <New id="DefaultHandler" class="org.eclipse.jetty.server.handler.DefaultHandler"/>
            </Item>
+           <Item>
+             <New id="RequestLog" class="org.eclipse.jetty.server.handler.RequestLogHandler"/>
+           </Item>
          </Array>
         </Set>
       </New>
