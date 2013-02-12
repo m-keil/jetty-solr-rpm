@@ -13,10 +13,10 @@
     <New id="ServerLog" class="java.io.PrintStream">
       <Arg>
         <New class="org.eclipse.jetty.util.RolloverFileOutputStream">
-          <Arg><Property name="jetty.logs" default="./logs"/>/yyyy_mm_dd.stderrout.log</Arg>
+          <Arg><Property name="jetty.logs" default="./logs"/>/stderrout.yyyy_mm_dd.log</Arg>
           <Arg type="boolean">false</Arg>
           <Arg type="int">90</Arg>
-          <Arg><Call class="java.util.TimeZone" name="getTimeZone"><Arg>GMT</Arg></Call></Arg>
+          <Arg><Call class="java.util.TimeZone" name="getTimeZone"><Arg>UTC</Arg></Call></Arg>
           <Get id="ServerLogName" name="datedFilename"/>
         </New>
       </Arg>
