@@ -11,3 +11,7 @@ TODO items for rpm packaging
 
 -postinstall logic to pick appropriate jvm
 
+-review recommended jetty config options for JAVA
+
+-implement some basic default security on the jetty and solr listeners. passwords? ip access list?
+

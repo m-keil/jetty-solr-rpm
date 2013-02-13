@@ -98,6 +98,9 @@ if [ "$1" -ge "1" ] ; then
 fi
 
 %changelog
+* Tue Feb 12 2013 Boogie Shafer <boogieshafer@yahoo.com>
+- edits to configure jetty logging
+
 * Tue Jan 29 2013 Boogie Shafer <boogieshafer@yahoo.com>
 - edits for 4.1.0 solr using bundled jetty and zookeeper
 
