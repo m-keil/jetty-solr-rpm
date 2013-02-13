@@ -4,7 +4,7 @@
 
 Name:			jetty-solr
 Version:		%{ver}
-Release:		15%{?dist}
+Release:		16%{?dist}
 Summary:		Solr
 License:		GPL
 URL:			http://lucene.apache.org/solr/
@@ -78,7 +78,7 @@ rm -rf $RPM_BUILD_ROOT
 %pre
 getent group solr >/dev/null || groupadd -r solr
 getent passwd solr >/dev/null || \
-    useradd -r -g solr -d %{_prefix} -s /bin/bash \
+    useradd -r -g solr -d %{_prefix}/jetty-solr/solr -s /bin/bash \
     -c "Solr User" solr
 exit 0
 
