@@ -3,7 +3,7 @@ TODO items for rpm packaging
 -resolve issues with logging and filenaming
     jetty request log - WORKING with jetty.xml integration
     jetty stderr - WORKING with jetty.xml integration
-    solr log - doesnt appear to being created
+    solr log - WORKING, no datestamp in name
     start.log - TODO - fix naming syntax
     zookeeper logs when using built in zk?
 
