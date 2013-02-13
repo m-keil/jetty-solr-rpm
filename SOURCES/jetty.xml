@@ -91,7 +91,7 @@
             <Set name="requestLog">
               <New id="RequestLogImpl" class="org.eclipse.jetty.server.NCSARequestLog">
                 <Set name="filename">
-                   ./logs/request.yyyy_mm_dd.log
+                   ./logs/jetty-request.yyyy_mm_dd.log
                 </Set>
                 <Set name="filenameDateFormat">yyyy_MM_dd</Set>
                 <Set name="retainDays">90</Set>
@@ -113,7 +113,7 @@
     <New id="ServerLog" class="java.io.PrintStream">
       <Arg>
         <New class="org.eclipse.jetty.util.RolloverFileOutputStream">
-          <Arg><Property name="jetty.logs" default="./logs"/>/stderrout.yyyy_mm_dd.log</Arg>
+          <Arg><Property name="jetty.logs" default="./logs"/>/jetty-stderrout.yyyy_mm_dd.log</Arg>
           <Arg type="boolean">false</Arg>
           <Arg type="int">90</Arg>
           <Arg><Call class="java.util.TimeZone" name="getTimeZone"><Arg>UTC</Arg></Call></Arg>
