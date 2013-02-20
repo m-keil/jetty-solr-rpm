@@ -1,7 +1,7 @@
 #!/bin/sh
 version="4.1.0"
-rm -rf BUILD tmp || true
-mkdir -p BUILD RPMS SRPMS
+rm -rf BUILD BUILDROOT tmp || true
+mkdir -p BUILD BUILDROOT RPMS SRPMS
 
 if [ ! -f SOURCES/solr-$version.tgz ];
 then
