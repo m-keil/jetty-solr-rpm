@@ -4,7 +4,7 @@
 
 Name:			jetty-solr
 Version:		%{ver}
-Release:		17%{?dist}
+Release:		18%{?dist}
 Summary:		Solr
 License:		GPL
 URL:			http://lucene.apache.org/solr/
@@ -38,7 +38,7 @@ cp -pr docs "%{buildroot}%{_prefix}"
 %__install -d "%{buildroot}%{_prefix}/jetty-solr"
 cp -pr example/* "%{buildroot}%{_prefix}/jetty-solr"
 cp -pr licenses "%{buildroot}%{_prefix}"
-%__install -d "%{buildroot}%{_prefix}"/jetty-solr/solr/data
+%__install -d "%{buildroot}%{_prefix}"/jetty-solr/solr/collection1/data
 %__install -d "%{buildroot}%{_prefix}"/jetty-solr/solr/lib
 %__install -d "%{buildroot}"/etc/default
 %__install -d "%{buildroot}"/etc/init.d
@@ -49,7 +49,8 @@ cp -pr licenses "%{buildroot}%{_prefix}"
 sed -i "s|JETTY_HOME_REPLACE|%{_prefix}|g" "%{buildroot}/etc/default/jetty"
 sed -i "s|JETTY_LOGS_REPLACE|%{_logprefix}|g" "%{buildroot}/etc/default/jetty"
 sed -i "s|JAVA_HOME_REPLACE|%{_javaprefix}|g" "%{buildroot}/etc/default/jetty"
-sed -i "s|./logs/|%{_logprefix}/|g" "%{buildroot}%{_prefix}/jetty-solr/etc/logging.properties"
+sed -i "s|./logs/solr%u.log|%{_logprefix}/solr-%g.log|g" "%{buildroot}%{_prefix}/jetty-solr/etc/logging.properties"
+sed -i "$ a\ \n# keep 5 files \njava.util.logging.FileHandler.count = 5\n \n# append to existing \njava.util.logging.FileHandler.append = true" "%{buildroot}%{_prefix}/jetty-solr/etc/logging.properties"
 sed -i "s|./logs|%{_logprefix}|g" "%{buildroot}%{_prefix}/jetty-solr/etc/jetty.xml"
 
 %clean
@@ -98,6 +99,10 @@ if [ "$1" -ge "1" ] ; then
 fi
 
 %changelog
+* Wed Feb 20 2013 Boogie Shafer <boogieshafer@yahoo.com>
+- change path to data directory to place it under collection1
+- adjust logging settings for solr
+
 * Tue Feb 12 2013 Boogie Shafer <boogieshafer@yahoo.com>
 - edits to configure jetty logging
 
