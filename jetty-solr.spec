@@ -4,7 +4,7 @@
 
 Name:			jetty-solr
 Version:		%{ver}
-Release:		19%{?dist}
+Release:		1%{?dist}
 Summary:		Solr
 License:		GPL
 URL:			http://lucene.apache.org/solr/
@@ -99,6 +99,9 @@ if [ "$1" -ge "1" ] ; then
 fi
 
 %changelog
+* Mon Mar 25 2013 Boogie Shafer <boogieshafer@yahoo.com>
+- adjust version for 4.2.0 
+
 * Wed Feb 20 2013 Boogie Shafer <boogieshafer@yahoo.com>
 - change path to data directory to place it under collection1
 - adjust logging settings for solr

@@ -1,5 +1,5 @@
 #!/bin/sh
-version="4.1.0"
+version="4.2.0"
 rm -rf BUILD BUILDROOT tmp || true
 mkdir -p BUILD BUILDROOT RPMS SRPMS
 
