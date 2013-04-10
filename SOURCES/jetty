@@ -11,7 +11,7 @@ JAVA_OPTIONS="-Dsolr.solr.home=$JETTY_HOME/solr $JAVA_OPTIONS"
 JAVA_OPTIONS="-Dcom.sun.management.jmxremote $JAVA_OPTIONS"
 JAVA_OPTIONS="-Djava.util.logging.config.file=etc/logging.properties $JAVA_OPTIONS"
 JAVA_OPTIONS="-Xmx1024m -Xms512m $JAVA_OPTIONS"
-JAVA_OPTIONS="-XX:+HeapDumpOnOutOfMemoryError -XX:HeapDumpPath=/tmp/jetty-solr.dump $JAVA_OPTIONS"
+JAVA_OPTIONS="-XX:+HeapDumpOnOutOfMemoryError -XX:HeapDumpPath=/tmp/jetty-solr-dump.hprof $JAVA_OPTIONS"
 #JAVA_OPTIONS="-Dcom.sun.management.jmxremote -Dcom.sun.management.jmxremote.port=3000 -Dcom.sun.management.jmxremote.ssl=false -Dcom.sun.management.jmxremote.authenticate=false -Djava.net.preferIPv4Stack=true $JAVA_OPTIONS"
 
 # SOLR settings for jetty-solr
