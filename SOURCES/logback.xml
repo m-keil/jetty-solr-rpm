@@ -30,7 +30,7 @@ http://logback.qos.ch/manual/configuration.html
         </rollingPolicy>
         <Append>true</Append>
         <encoder>
-            <pattern>%-4relative [%thread] %-5level %logger{35} - %msg%n</pattern>
+            <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
         </encoder>
     </appender>
  
@@ -51,7 +51,7 @@ http://logback.qos.ch/manual/configuration.html
         </rollingPolicy>
         <Append>true</Append>
         <encoder>
-            <pattern>%-4relative [%thread] %-5level %logger{35} - %msg%n</pattern>
+            <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
         </encoder>
     </appender>
  
@@ -71,7 +71,7 @@ http://logback.qos.ch/manual/configuration.html
         </rollingPolicy>
         <Append>true</Append>
         <encoder>
-            <pattern>%-4relative [%thread] %-5level %logger{35} - %msg%n</pattern>
+            <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
         </encoder>
     </appender>
  
@@ -105,3 +105,4 @@ http://logback.qos.ch/manual/configuration.html
         <appender-ref ref="SOLR_LOG_FILE" />
     </root>
 -->
+</configuration>
