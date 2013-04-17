@@ -18,14 +18,14 @@ http://logback.qos.ch/manual/configuration.html
         <file>./logs/jetty.log</file>
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
             <!-- daily rollover -->
-            <fileNamePattern>./logs/jetty.%d{yyyy-MM-dd}.%i.log</fileNamePattern>
+            <fileNamePattern>./logs/jetty.%d{yyyy-MM-dd}.%i.log.gz</fileNamePattern>
             <timeBasedFileNamingAndTriggeringPolicy
                     class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
                 <!-- or whenever the file size reaches 100MB -->
                 <maxFileSize>100MB</maxFileSize>
             </timeBasedFileNamingAndTriggeringPolicy>
  
-            <!-- keep 10 days' worth of history -->
+            <!-- keep 10 files worth of history -->
             <maxHistory>10</maxHistory>
         </rollingPolicy>
         <Append>true</Append>
@@ -39,14 +39,14 @@ http://logback.qos.ch/manual/configuration.html
         <file>./logs/zkclient.log</file>
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
             <!-- daily rollover -->
-            <fileNamePattern>./logs/zkclient.%d{yyyy-MM-dd}.%i.log</fileNamePattern>
+            <fileNamePattern>./logs/zkclient.%d{yyyy-MM-dd}.%i.log.gz</fileNamePattern>
             <timeBasedFileNamingAndTriggeringPolicy
                     class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
                 <!-- or whenever the file size reaches 100MB -->
                 <maxFileSize>100MB</maxFileSize>
             </timeBasedFileNamingAndTriggeringPolicy>
  
-            <!-- keep 10 days' worth of history -->
+            <!-- keep 10 files worth of history -->
             <maxHistory>10</maxHistory>
         </rollingPolicy>
         <Append>true</Append>
@@ -59,14 +59,14 @@ http://logback.qos.ch/manual/configuration.html
         <file>./logs/solr.log</file>
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
             <!-- daily rollover -->
-            <fileNamePattern>./logs/solr.%d{yyyy-MM-dd}.%i.log</fileNamePattern>
+            <fileNamePattern>./logs/solr.%d{yyyy-MM-dd}.%i.log.gz</fileNamePattern>
             <timeBasedFileNamingAndTriggeringPolicy
                     class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
                 <!-- or whenever the file size reaches 100MB -->
                 <maxFileSize>100MB</maxFileSize>
             </timeBasedFileNamingAndTriggeringPolicy>
  
-            <!-- keep 10 days' worth of history -->
+            <!-- keep 10 files worth of history -->
             <maxHistory>10</maxHistory>
         </rollingPolicy>
         <Append>true</Append>
