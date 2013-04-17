@@ -1,0 +1,14 @@
+--- etc/jetty-logging.xml.dist	2013-04-16 17:09:37.991563000 -0700
++++ etc/jetty-logging.xml	2013-04-16 17:10:27.953558000 -0700
+@@ -13,9 +13,9 @@
+     <New id="ServerLog" class="java.io.PrintStream">
+       <Arg>
+         <New class="org.eclipse.jetty.util.RolloverFileOutputStream">
+-          <Arg><Property name="jetty.logs" default="./logs"/>/yyyy_mm_dd.stderrout.log</Arg>
++          <Arg><Property name="jetty.logs" default="./logs"/>/jetty-stderrout.log</Arg>
+           <Arg type="boolean">false</Arg>
+-          <Arg type="int">90</Arg>
++          <Arg type="int">30</Arg>
+           <Arg><Call class="java.util.TimeZone" name="getTimeZone"><Arg>GMT</Arg></Call></Arg>
+           <Get id="ServerLogName" name="datedFilename"/>
+         </New>
