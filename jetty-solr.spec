@@ -47,11 +47,11 @@ rm solr.war
 # remove old slf4j jars
 rm $RPM_BUILD_DIR/tmp/WEB-INF/lib/*slf4j*.jar
 # add back new logging jars for logback and update slf4j (needed?)
-#cp -p $RPM_BUILD_DIR/logback-%{lver}/logback-core-%{lver}.jar $RPM_BUILD_DIR/tmp/WEB-INF/lib/
-#cp -p $RPM_BUILD_DIR/logback-%{lver}/logback-classic-%{lver}.jar $RPM_BUILD_DIR/tmp/WEB-INF/lib/
-#cp -p $RPM_BUILD_DIR/slf4j-%{slfver}/jcl-over-slf4j-%{slfver}.jar $RPM_BUILD_DIR/tmp/WEB-INF/lib/
-#cp -p $RPM_BUILD_DIR/slf4j-%{slfver}/log4j-over-slf4j-%{slfver}.jar $RPM_BUILD_DIR/tmp/WEB-INF/lib/
-#cp -p $RPM_BUILD_DIR/slf4j-%{slfver}/slf4j-api-%{slfver}.jar $RPM_BUILD_DIR/tmp/WEB-INF/lib/
+cp -p $RPM_BUILD_DIR/logback-%{lver}/logback-core-%{lver}.jar $RPM_BUILD_DIR/tmp/WEB-INF/lib/
+cp -p $RPM_BUILD_DIR/logback-%{lver}/logback-classic-%{lver}.jar $RPM_BUILD_DIR/tmp/WEB-INF/lib/
+cp -p $RPM_BUILD_DIR/slf4j-%{slfver}/jcl-over-slf4j-%{slfver}.jar $RPM_BUILD_DIR/tmp/WEB-INF/lib/
+cp -p $RPM_BUILD_DIR/slf4j-%{slfver}/log4j-over-slf4j-%{slfver}.jar $RPM_BUILD_DIR/tmp/WEB-INF/lib/
+cp -p $RPM_BUILD_DIR/slf4j-%{slfver}/slf4j-api-%{slfver}.jar $RPM_BUILD_DIR/tmp/WEB-INF/lib/
 jar cf solr.war *
 cp $RPM_BUILD_DIR/tmp/solr.war $RPM_BUILD_DIR/solr-%{version}/example/webapps/solr.war
 
