@@ -1,0 +1,14 @@
+--- etc/jetty-requestlog.xml.dist	2013-04-16 17:05:55.948143000 -0700
++++ etc/jetty-requestlog.xml	2013-04-16 17:07:14.065697000 -0700
+@@ -16,9 +16,9 @@
+           <New id="RequestLog" class="org.eclipse.jetty.server.handler.RequestLogHandler">
+ 	    <Set name="requestLog">
+ 	      <New id="RequestLogImpl" class="org.eclipse.jetty.server.NCSARequestLog">
+-		<Set name="filename"><Property name="jetty.logs" default="./logs"/>/yyyy_mm_dd.request.log</Set>
++		<Set name="filename"><Property name="jetty.logs" default="./logs"/>/jetty-request.log</Set>
+ 		<Set name="filenameDateFormat">yyyy_MM_dd</Set>
+-		<Set name="retainDays">90</Set>
++		<Set name="retainDays">30</Set>
+ 		<Set name="append">true</Set>
+ 		<Set name="extended">false</Set>
+ 		<Set name="logCookies">false</Set>
