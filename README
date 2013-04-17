@@ -1,6 +1,6 @@
 RPM build for Solr using builtin Jetty
 
-Solr version 4.1.0
+Solr version 4.2.1
 
 goal is a relatively plain vanilla rpm for solr on jetty deployments
   -detail configs would be controlled via chef
