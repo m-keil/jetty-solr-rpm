@@ -3,12 +3,12 @@ JETTY_HOME=JETTY_HOME_REPLACE/jetty-solr
 JETTY_USER=solr
 JETTY_LOGS=JETTY_LOGS_REPLACE
 JETTY_PORT=8983
-#JETTY_ARGS="--pre=etc/jetty-logging.xml $JETTY_ARGS"
+#JETTY_ARGS="OPTIONS=Server,jmx,logging,resources etc/jetty-jmx.xml etc/jetty.xml etc/jetty-requestlog.xml $JETTY_ARGS"
+JETTY_ARGS="OPTIONS=Server etc/jetty.xml etc/jetty-logging.xml etc/jetty-requestlog.xml $JETTY_ARGS"
 
 # JAVA settings for jetty-solr
 JAVA_HOME=JAVA_HOME_REPLACE/java
 JAVA_OPTIONS="-Dsolr.solr.home=$JETTY_HOME/solr $JAVA_OPTIONS"
-JAVA_OPTIONS="-Dcom.sun.management.jmxremote $JAVA_OPTIONS"
 JAVA_OPTIONS="-Djava.util.logging.config.file=etc/logging.properties $JAVA_OPTIONS"
 JAVA_OPTIONS="-Xmx1024m -Xms512m $JAVA_OPTIONS"
 JAVA_OPTIONS="-XX:+HeapDumpOnOutOfMemoryError -XX:HeapDumpPath=/tmp/jetty-solr-dump.hprof $JAVA_OPTIONS"
