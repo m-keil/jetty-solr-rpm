@@ -6,7 +6,7 @@ TODO items for rpm packaging
     solr log - WORKING with logback integration. seems to require logging jars in solr.war?
     start.log - TODO - fix naming syntax, probably need to rebuild start.jar.
     zookeeper client logs - WORKING with logback
-    zookeeper server logs - TODO ?
+    zookeeper server logs - WORKING with logback
     log file pattern tuning
 
 -confirm log rotation working for all logs
