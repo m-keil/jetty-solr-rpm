@@ -5,7 +5,7 @@
 
 Name:			jetty-solr
 Version:		%{sver}
-Release:		1.logback%{?dist}
+Release:		2%{?dist}
 Summary:		Solr
 License:		GPL
 URL:			http://lucene.apache.org/solr/
@@ -149,6 +149,9 @@ if [ "$1" -ge "1" ] ; then
 fi
 
 %changelog
+* Thu Apr 18 2013 Boogie Shafer <boogieshafer@yahoo.com>
+- switch logging to logback
+
 * Wed Apr 17 2013 Boogie Shafer <boogieshafer@yahoo.com>
 - make collection name configurable
 - build using 4.2.1 solr binary release
