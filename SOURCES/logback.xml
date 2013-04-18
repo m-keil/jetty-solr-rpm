@@ -35,11 +35,11 @@ http://logback.qos.ch/manual/configuration.html
     </appender>
  
  
-    <appender name="ZK_CLIENT_LOG_FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
-        <file>./logs/zkclient.log</file>
+    <appender name="ZK_LOG_FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>./logs/zookeeper.log</file>
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
             <!-- daily rollover -->
-            <fileNamePattern>./logs/zkclient.%d{yyyy-MM-dd}.%i.log.gz</fileNamePattern>
+            <fileNamePattern>./logs/zookeeper.%d{yyyy-MM-dd}.%i.log.gz</fileNamePattern>
             <timeBasedFileNamingAndTriggeringPolicy
                     class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
                 <!-- or whenever the file size reaches 100MB -->
@@ -96,13 +96,11 @@ http://logback.qos.ch/manual/configuration.html
     </logger>
  
     <logger name="org.apache.zookeeper" level="INFO" additivity="false">
-        <appender-ref ref="ZK_CLIENT_LOG_FILE"/>
+        <appender-ref ref="ZK_LOG_FILE"/>
     </logger>
 <!--
     <root level="INFO">
         <appender-ref ref="STDOUT" />
-        <appender-ref ref="JETTY_LOG_FILE" />
-        <appender-ref ref="SOLR_LOG_FILE" />
     </root>
 -->
 </configuration>
