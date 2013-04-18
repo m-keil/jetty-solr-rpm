@@ -1,17 +1,26 @@
 TODO items for rpm packaging
 
 -resolve issues with logging and filenaming
-    jetty request log - WORKING with jetty.xml integration
-    jetty stderr - WORKING with jetty.xml integration
-    solr log - WORKING, no datestamp in name
-    start.log - TODO - fix naming syntax
-    zookeeper logs when using built in zk?
+    jetty request log - WORKING with logback
+    jetty logs - WORKING with logback integration
+    solr log - WORKING with logback integration. seems to require logging jars in solr.war?
+    start.log - TODO - fix naming syntax, probably need to rebuild start.jar.
+    zookeeper client logs - WORKING with logback
+    zookeeper server logs - WORKING with logback
+    log file pattern tuning
 
 -confirm log rotation working for all logs
 
+-enable/configure JMX settings for jetty and solr
+    listening on known/fixed port
+
 -postinstall logic to pick appropriate jvm
 
--review recommended jetty config options for JAVA
+-review recommended jetty config options for JAVA (as described in the jetty.xml from jetty distribution)
 
--implement some basic default security on the jetty and solr listeners. passwords? ip access list?
+-implement some basic default security on the jetty and solr listeners
+    passwords?
+    ip access list?
+
+-resolve issue with jetty start script which causes hang on remote restart (e.g. ssh solrhost01 "sudo /etc/init.d/jetty-solr restart")
 
