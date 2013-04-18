@@ -10,7 +10,7 @@ http://logback.qos.ch/manual/configuration.html
         <!-- encoders are assigned the type
              ch.qos.logback.classic.encoder.PatternLayoutEncoder by default -->
         <encoder>
-            <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
+            <pattern>%date{"MMM d y HH:mm:ss.SSS z [Z]"} [%thread] %-5level %logger{36} - %msg%n</pattern>
         </encoder>
     </appender>
  
@@ -30,7 +30,7 @@ http://logback.qos.ch/manual/configuration.html
         </rollingPolicy>
         <Append>true</Append>
         <encoder>
-            <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
+            <pattern>%date{"MMM d y HH:mm:ss.SSS z [Z]"} [%thread] %-5level %logger{36} - %msg%n</pattern>
         </encoder>
     </appender>
  
@@ -51,7 +51,7 @@ http://logback.qos.ch/manual/configuration.html
         </rollingPolicy>
         <Append>true</Append>
         <encoder>
-            <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
+            <pattern>%date{"MMM d y HH:mm:ss.SSS z [Z]"} [%thread] %-5level %logger{36} - %msg%n</pattern>
         </encoder>
     </appender>
  
@@ -71,7 +71,7 @@ http://logback.qos.ch/manual/configuration.html
         </rollingPolicy>
         <Append>true</Append>
         <encoder>
-            <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
+            <pattern>%date{"MMM d y HH:mm:ss.SSS z [Z]"} [%thread] %-5level %logger{36} - %msg%n</pattern>
         </encoder>
     </appender>
  
