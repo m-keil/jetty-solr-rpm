@@ -6,13 +6,15 @@ slf4j version 1.7.5
 logback version 1.0.11
 
 
-goal is a relatively plain vanilla rpm for solr on jetty deployments
-  -all logging using similar configuration (rotation, etc)
-  -detail configs would be controlled via chef
+goal is a serviceable base rpm for deployment of solr on jetty
+
+Logging is handled by logback framework
+  -all logging for jetty, solr, and the local zookeeper services is using similar configuration settings (rotation, formatting, etc)
 
 JMX interface is enabled on TCP port 1099 with simple authentication
   -read access credentials: monitorRole/mrpasswd
   -read/write access credentials: controlRole/crpasswd
   -reference: http://wiki.eclipse.org/Jetty/Tutorial/JMX
+
 
 RPM build process was adapted from https://github.com/jfroche/solr-rpm
