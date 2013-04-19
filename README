@@ -15,4 +15,4 @@ JMX interface is enabled on TCP port 1099 with simple authentication
   -read/write access credentials: controlRole/crpasswd
   -reference: http://wiki.eclipse.org/Jetty/Tutorial/JMX
 
-adapted from https://github.com/jfroche/solr-rpm
+RPM build process was adapted from https://github.com/jfroche/solr-rpm
