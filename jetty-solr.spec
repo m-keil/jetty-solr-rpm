@@ -5,7 +5,7 @@
 
 Name:			jetty-solr
 Version:		%{sver}
-Release:		2%{?dist}
+Release:		6jmx%{?dist}
 Summary:		Solr
 License:		GPL
 URL:			http://lucene.apache.org/solr/
@@ -16,8 +16,11 @@ Source3:                http://logback.qos.ch/dist/logback-%{lver}.tar.gz
 Source4:		jetty
 Source5:		logback.xml
 Source6:		logback-access.xml
+Source7:		jmx.passwd
+Source8:		jmx.access
 Patch0:			jetty.xml-remove_requestlog.patch
 Patch1:			jetty-requestlog.xml-configure_logback.patch
+Patch2:			jetty-jmx.xml-enable_rmi_tcp1099.patch
 BuildRoot:		%(mktemp -ud %{_tmppath}/%{name}-%{version}-%{release}-XXXXXX)
 Requires(pre):		shadow-utils
 Requires(post):		chkconfig
@@ -33,6 +36,7 @@ Requires:		java7 => 1:1.7.0
 %patch0 -p0
 %setup -q -D -T -b 1 -n jetty-distribution-%{jver}
 %patch1 -p0
+%patch2 -p0
 %setup -q -D -T -b 2 -n slf4j-%{slfver}
 %setup -q -D -T -b 3 -n logback-%{lver}
 
@@ -86,8 +90,11 @@ mv "%{buildroot}%{_prefix}/jetty-solr/solr/collection1" "%{buildroot}%{_prefix}/
 %__install -D -m0644  "%{SOURCE4}" %{buildroot}/etc/default/jetty
 %__install -D -m0644  "%{SOURCE5}" %{buildroot}%{_prefix}/jetty-solr/etc/logback.xml
 %__install -D -m0644  "%{SOURCE6}" %{buildroot}%{_prefix}/jetty-solr/resources/logback-access.xml
+%__install -D -m0600  "%{SOURCE7}" %{buildroot}%{_prefix}/jetty-solr/resources/jmx.passwd
+%__install -D -m0644  "%{SOURCE8}" %{buildroot}%{_prefix}/jetty-solr/resources/jmx.access
 %__install -D -m0755  $RPM_BUILD_DIR/jetty-distribution-%{jver}/bin/jetty.sh %{buildroot}/etc/init.d/jetty-solr
 %__install -D -m0644  $RPM_BUILD_DIR/jetty-distribution-%{jver}/etc/jetty-requestlog.xml %{buildroot}%{_prefix}/jetty-solr/etc/jetty-requestlog.xml
+%__install -D -m0644  $RPM_BUILD_DIR/jetty-distribution-%{jver}/etc/jetty-jmx.xml %{buildroot}%{_prefix}/jetty-solr/etc/jetty-jmx.xml
 sed -i "s|JETTY_HOME_REPLACE|%{_prefix}|g" "%{buildroot}/etc/default/jetty"
 sed -i "s|JETTY_LOGS_REPLACE|%{_logprefix}|g" "%{buildroot}/etc/default/jetty"
 sed -i "s|JAVA_HOME_REPLACE|%{_javaprefix}|g" "%{buildroot}/etc/default/jetty"
@@ -149,6 +156,9 @@ if [ "$1" -ge "1" ] ; then
 fi
 
 %changelog
+* Fri Apr 19 2013 Boogie Shafer <boogieshafer@yahoo.com>
+- configure JMX support in jetty
+
 * Thu Apr 18 2013 Boogie Shafer <boogieshafer@yahoo.com>
 - switch logging to logback
 
