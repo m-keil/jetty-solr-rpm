@@ -6,7 +6,8 @@ http://logback.qos.ch/manual/configuration.html
  
   -->
 <configuration>
-<!-- to JMX enable logback, see http://logback.qos.ch/manual/jmxConfig.html
+<!-- uncomment to JMX enable logback, see http://logback.qos.ch/manual/jmxConfig.html
+    <contextName>jetty-solr</contextName>
     <jmxConfigurator />
  -->
 
