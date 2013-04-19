@@ -5,7 +5,7 @@
 
 Name:			jetty-solr
 Version:		%{sver}
-Release:		6jmx%{?dist}
+Release:		7jmx%{?dist}
 Summary:		Solr
 License:		GPL
 URL:			http://lucene.apache.org/solr/
