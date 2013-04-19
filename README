@@ -1,4 +1,4 @@
-RPM build for Solr using builtin Jetty and logback logging
+RPM build for Solr using builtin Jetty and logback logging framework
 
 solr version 4.2.1
 jetty version 8.1.8.v20121106
@@ -9,5 +9,10 @@ logback version 1.0.11
 goal is a relatively plain vanilla rpm for solr on jetty deployments
   -all logging using similar configuration (rotation, etc)
   -detail configs would be controlled via chef
+
+JMX interface is enabled on TCP port 1099 with simple authentication
+  -read access credentials: monitorRole/mrpasswd
+  -read/write access credentials: controlRole/crpasswd
+  -reference: http://wiki.eclipse.org/Jetty/Tutorial/JMX
 
 adapted from https://github.com/jfroche/solr-rpm
