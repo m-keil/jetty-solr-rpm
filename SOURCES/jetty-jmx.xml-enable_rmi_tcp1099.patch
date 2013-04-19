@@ -1,0 +1,56 @@
+--- etc/jetty-jmx.xml.dist	2013-04-18 17:43:38.247782000 -0700
++++ etc/jetty-jmx.xml	2013-04-18 17:48:12.725592000 -0700
+@@ -63,19 +63,6 @@
+        JMX specification uses RMI to facilitate connections.        
+    -->
+ 
+-  <!-- Optionally start the RMI registry. Normally RMI registry runs on
+-       port 1099. The argument below can be changed in order to comply
+-       with the firewall requirements.
+-  -->
+-  <!--
+-  <Call name="createRegistry" class="java.rmi.registry.LocateRegistry">
+-    <Arg type="java.lang.Integer"><SystemProperty name="jetty.jmxrmiport" default="1099"/></Arg>
+-    <Call name="sleep" class="java.lang.Thread">
+-       <Arg type="java.lang.Integer">1000</Arg>
+-    </Call>
+-  </Call>
+-  -->
+- 
+   <!-- Optionally add a remote JMX connector. The parameters of the constructor
+        below specify the JMX service URL, and the object name string for the
+        connector server bean. The parameters of the JMXServiceURL constructor 
+@@ -85,7 +72,6 @@
+        the RMI registry hostname and port number, that may need to be modified
+        in order to comply with the firewall requirements. 
+   -->
+-  <!--
+   <New id="ConnectorServer" class="org.eclipse.jetty.jmx.ConnectorServer">
+     <Arg>
+       <New class="javax.management.remote.JMXServiceURL">
+@@ -95,9 +81,24 @@
+         <Arg type="java.lang.String">/jndi/rmi://<SystemProperty name="jetty.jmxrmihost" default="localhost"/>:<SystemProperty name="jetty.jmxrmiport" default="1099"/>/jmxrmi</Arg>
+       </New>
+     </Arg>
++    <Arg>
++    <Map>
++      <Entry>
++        <Item>jmx.remote.x.password.file</Item>
++        <Item>
++          <New class="java.lang.String"><Arg><Property name="jetty.home" default="." />/resources/jmx.passwd</Arg></New>
++        </Item>
++      </Entry>
++      <Entry>
++        <Item>jmx.remote.x.access.file</Item>
++        <Item>
++          <New class="java.lang.String"><Arg><Property name="jetty.home" default="." />/resources/jmx.access</Arg></New>
++        </Item>
++      </Entry>
++    </Map>
++  </Arg>
+     <Arg>org.eclipse.jetty.jmx:name=rmiconnectorserver</Arg>
+     <Call name="start" />
+   </New>
+-  -->
+ </Configure>
+ 
