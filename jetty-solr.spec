@@ -5,7 +5,7 @@
 
 Name:			jetty-solr
 Version:		%{sver}
-Release:		3%{?dist}
+Release:		4%{?dist}
 Summary:		Solr
 License:		GPL
 URL:			http://lucene.apache.org/solr/
@@ -42,7 +42,6 @@ Requires:		java7 => 1:1.7.0
 
 # process to remove slf4j jars from solr.war
 # should be unnecessary in 4.3+
-
 mkdir $RPM_BUILD_DIR/tmp
 mv $RPM_BUILD_DIR/solr-%{version}/example/webapps/solr.war $RPM_BUILD_DIR/tmp
 cd $RPM_BUILD_DIR/tmp
@@ -50,12 +49,6 @@ jar xf solr.war
 rm solr.war
 # remove old slf4j jars
 rm $RPM_BUILD_DIR/tmp/WEB-INF/lib/*slf4j*.jar
-# add back new logging jars for logback and update slf4j (needed?)
-cp -p $RPM_BUILD_DIR/logback-%{lver}/logback-core-%{lver}.jar $RPM_BUILD_DIR/tmp/WEB-INF/lib/
-cp -p $RPM_BUILD_DIR/logback-%{lver}/logback-classic-%{lver}.jar $RPM_BUILD_DIR/tmp/WEB-INF/lib/
-cp -p $RPM_BUILD_DIR/slf4j-%{slfver}/jcl-over-slf4j-%{slfver}.jar $RPM_BUILD_DIR/tmp/WEB-INF/lib/
-cp -p $RPM_BUILD_DIR/slf4j-%{slfver}/log4j-over-slf4j-%{slfver}.jar $RPM_BUILD_DIR/tmp/WEB-INF/lib/
-cp -p $RPM_BUILD_DIR/slf4j-%{slfver}/slf4j-api-%{slfver}.jar $RPM_BUILD_DIR/tmp/WEB-INF/lib/
 jar cf solr.war *
 cp $RPM_BUILD_DIR/tmp/solr.war $RPM_BUILD_DIR/solr-%{version}/example/webapps/solr.war
 
@@ -74,6 +67,9 @@ cp -pr $RPM_BUILD_DIR/solr-%{version}/licenses "%{buildroot}%{_prefix}"
 %__install -d "%{buildroot}%{_prefix}/jetty-solr/resources"
 cp -pr $RPM_BUILD_DIR/solr-%{version}/example/* "%{buildroot}%{_prefix}/jetty-solr"
 cp -p $RPM_BUILD_DIR/slf4j-%{slfver}/slf4j-api-%{slfver}.jar "%{buildroot}%{_prefix}/jetty-solr/lib/logging"
+cp -p $RPM_BUILD_DIR/slf4j-%{slfver}/jcl-over-slf4j-%{slfver}.jar "%{buildroot}%{_prefix}/jetty-solr/lib/logging"
+cp -p $RPM_BUILD_DIR/slf4j-%{slfver}/jul-to-slf4j-%{slfver}.jar "%{buildroot}%{_prefix}/jetty-solr/lib/logging"
+cp -p $RPM_BUILD_DIR/slf4j-%{slfver}/log4j-over-slf4j-%{slfver}.jar "%{buildroot}%{_prefix}/jetty-solr/lib/logging"
 cp -p $RPM_BUILD_DIR/logback-%{lver}/logback-core-%{lver}.jar "%{buildroot}%{_prefix}/jetty-solr/lib/logging"
 cp -p $RPM_BUILD_DIR/logback-%{lver}/logback-classic-%{lver}.jar "%{buildroot}%{_prefix}/jetty-solr/lib/logging"
 cp -p $RPM_BUILD_DIR/logback-%{lver}/logback-access-%{lver}.jar "%{buildroot}%{_prefix}/jetty-solr/lib/logging"
@@ -88,7 +84,7 @@ mv "%{buildroot}%{_prefix}/jetty-solr/solr/collection1" "%{buildroot}%{_prefix}/
 %__install -d "%{buildroot}"/etc/init.d
 %__install -d "%{buildroot}%{_logprefix}"
 %__install -D -m0644  "%{SOURCE4}" %{buildroot}/etc/default/jetty
-%__install -D -m0644  "%{SOURCE5}" %{buildroot}%{_prefix}/jetty-solr/etc/logback.xml
+%__install -D -m0644  "%{SOURCE5}" %{buildroot}%{_prefix}/jetty-solr/resources/logback.xml
 %__install -D -m0644  "%{SOURCE6}" %{buildroot}%{_prefix}/jetty-solr/resources/logback-access.xml
 %__install -D -m0600  "%{SOURCE7}" %{buildroot}%{_prefix}/jetty-solr/resources/jmx.passwd
 %__install -D -m0644  "%{SOURCE8}" %{buildroot}%{_prefix}/jetty-solr/resources/jmx.access
@@ -99,7 +95,7 @@ sed -i "s|JETTY_HOME_REPLACE|%{_prefix}|g" "%{buildroot}/etc/default/jetty"
 sed -i "s|JETTY_LOGS_REPLACE|%{_logprefix}|g" "%{buildroot}/etc/default/jetty"
 sed -i "s|JAVA_HOME_REPLACE|%{_javaprefix}|g" "%{buildroot}/etc/default/jetty"
 sed -i "s|./logs|%{_logprefix}|g" "%{buildroot}%{_prefix}/jetty-solr/etc/jetty-requestlog.xml"
-sed -i "s|./logs|%{_logprefix}|g" "%{buildroot}%{_prefix}/jetty-solr/etc/logback.xml"
+sed -i "s|./logs|%{_logprefix}|g" "%{buildroot}%{_prefix}/jetty-solr/resources/logback.xml"
 sed -i "s|./logs|%{_logprefix}|g" "%{buildroot}%{_prefix}/jetty-solr/resources/logback-access.xml"
 rm "%{buildroot}%{_prefix}/jetty-solr/etc/logging.properties"
 
@@ -156,13 +152,21 @@ if [ "$1" -ge "1" ] ; then
 fi
 
 %changelog
+* Wed Apr 22 2013 Boogie Shafer <boogieshafer@yahoo.com>
+- v4.2.1-4 tag
+- remove logging jars from solr.war
+- adjust logback settings
+
 * Fri Apr 19 2013 Boogie Shafer <boogieshafer@yahoo.com>
+- v4.2.1-3 tag
 - configure JMX support in jetty
 
 * Thu Apr 18 2013 Boogie Shafer <boogieshafer@yahoo.com>
+- v4.2.1-2 tag
 - switch logging to logback
 
 * Wed Apr 17 2013 Boogie Shafer <boogieshafer@yahoo.com>
+- v4.2.1-1 tag
 - make collection name configurable
 - build using 4.2.1 solr binary release
 - change default installation location to /opt/solr
