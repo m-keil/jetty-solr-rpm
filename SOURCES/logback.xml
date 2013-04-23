@@ -5,20 +5,14 @@
 http://logback.qos.ch/manual/configuration.html
  
   -->
-<configuration>
-<!-- uncomment to JMX enable logback, see http://logback.qos.ch/manual/jmxConfig.html
+<configuration scan="true" scanPeriod="60 seconds">
     <contextName>jetty-solr</contextName>
+    
+<!-- uncomment to JMX enable logback, see http://logback.qos.ch/manual/jmxConfig.html
     <jmxConfigurator />
  -->
 
-    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
-        <!-- encoders are assigned the type
-             ch.qos.logback.classic.encoder.PatternLayoutEncoder by default -->
-        <encoder>
-            <pattern>%date{"MMM d y HH:mm:ss.SSS z [Z]"} [%thread] %-5level %logger{36} - %msg%n</pattern>
-        </encoder>
-    </appender>
- 
+<!-- begin appender section --> 
     <appender name="JETTY_LOG_FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
         <file>./logs/jetty.log</file>
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
@@ -79,7 +73,11 @@ http://logback.qos.ch/manual/configuration.html
             <pattern>%date{"MMM d y HH:mm:ss.SSS z [Z]"} [%thread] %-5level %logger{36} - %msg%n</pattern>
         </encoder>
     </appender>
- 
+<!-- end appender section --> 
+
+
+<!-- begin logger section --> 
+    <!--  define where to send specific events  -->
     <logger name="org.eclipse" level="INFO" additivity="false">
         <appender-ref ref="JETTY_LOG_FILE"/>
     </logger>
@@ -103,9 +101,14 @@ http://logback.qos.ch/manual/configuration.html
     <logger name="org.apache.zookeeper" level="INFO" additivity="false">
         <appender-ref ref="ZK_LOG_FILE"/>
     </logger>
-<!--
+<!-- end logger section --> 
+
+
+<!-- begin root section --> 
     <root level="INFO">
-        <appender-ref ref="STDOUT" />
+        <!--  send everything else to jetty.log  -->
+        <appender-ref ref="JETTY_LOG_FILE" />
     </root>
--->
+<!-- end root section --> 
+
 </configuration>
