@@ -1,0 +1,11 @@
+--- example/solr/solr.xml.dist	2013-04-24 13:11:23.138967000 -0700
++++ example/solr/solr.xml	2013-04-24 13:22:21.226584000 -0700
+@@ -32,7 +32,7 @@
+   persistent: Save changes made via the API to this file
+   sharedLib: path to a lib directory that will be shared across all cores
+ -->
+-<solr persistent="true">
++<solr persistent="true" sharedLib="./lib">
+ 	<!-- by default, this is 50 @ WARN
+   <logging enabled="true">
+   	<watcher size="100" threshold="INFO" />
