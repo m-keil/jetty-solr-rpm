@@ -5,7 +5,7 @@
 
 Name:			jetty-solr
 Version:		%{sver}
-Release:		4%{?dist}
+Release:		6%{?dist}
 Summary:		Solr
 License:		GPL
 URL:			http://lucene.apache.org/solr/
@@ -19,8 +19,9 @@ Source6:		logback-access.xml
 Source7:		jmx.passwd
 Source8:		jmx.access
 Patch0:			jetty.xml-remove_requestlog.patch
-Patch1:			jetty-requestlog.xml-configure_logback.patch
-Patch2:			jetty-jmx.xml-enable_rmi_tcp1099.patch
+Patch1:			solr.xml-add_lib_dir.patch
+Patch2:			jetty-requestlog.xml-configure_logback.patch
+Patch3:			jetty-jmx.xml-enable_rmi_tcp1099.patch
 BuildRoot:		%(mktemp -ud %{_tmppath}/%{name}-%{version}-%{release}-XXXXXX)
 Requires(pre):		shadow-utils
 Requires(post):		chkconfig
@@ -34,9 +35,10 @@ Requires:		java7 => 1:1.7.0
 %prep
 %setup -q -n solr-%{version}
 %patch0 -p0
-%setup -q -D -T -b 1 -n jetty-distribution-%{jver}
 %patch1 -p0
+%setup -q -D -T -b 1 -n jetty-distribution-%{jver}
 %patch2 -p0
+%patch3 -p0
 %setup -q -D -T -b 2 -n slf4j-%{slfver}
 %setup -q -D -T -b 3 -n logback-%{lver}
 
@@ -63,16 +65,16 @@ cp -pr $RPM_BUILD_DIR/solr-%{version}/dist "%{buildroot}%{_prefix}"
 cp -pr $RPM_BUILD_DIR/solr-%{version}/docs "%{buildroot}%{_prefix}"
 cp -pr $RPM_BUILD_DIR/solr-%{version}/licenses "%{buildroot}%{_prefix}"
 %__install -d "%{buildroot}%{_prefix}/jetty-solr"
-%__install -d "%{buildroot}%{_prefix}/jetty-solr/lib/logging"
+%__install -d "%{buildroot}%{_prefix}/jetty-solr/lib/ext"
 %__install -d "%{buildroot}%{_prefix}/jetty-solr/resources"
 cp -pr $RPM_BUILD_DIR/solr-%{version}/example/* "%{buildroot}%{_prefix}/jetty-solr"
-cp -p $RPM_BUILD_DIR/slf4j-%{slfver}/slf4j-api-%{slfver}.jar "%{buildroot}%{_prefix}/jetty-solr/lib/logging"
-cp -p $RPM_BUILD_DIR/slf4j-%{slfver}/jcl-over-slf4j-%{slfver}.jar "%{buildroot}%{_prefix}/jetty-solr/lib/logging"
-cp -p $RPM_BUILD_DIR/slf4j-%{slfver}/jul-to-slf4j-%{slfver}.jar "%{buildroot}%{_prefix}/jetty-solr/lib/logging"
-cp -p $RPM_BUILD_DIR/slf4j-%{slfver}/log4j-over-slf4j-%{slfver}.jar "%{buildroot}%{_prefix}/jetty-solr/lib/logging"
-cp -p $RPM_BUILD_DIR/logback-%{lver}/logback-core-%{lver}.jar "%{buildroot}%{_prefix}/jetty-solr/lib/logging"
-cp -p $RPM_BUILD_DIR/logback-%{lver}/logback-classic-%{lver}.jar "%{buildroot}%{_prefix}/jetty-solr/lib/logging"
-cp -p $RPM_BUILD_DIR/logback-%{lver}/logback-access-%{lver}.jar "%{buildroot}%{_prefix}/jetty-solr/lib/logging"
+cp -p $RPM_BUILD_DIR/slf4j-%{slfver}/slf4j-api-%{slfver}.jar "%{buildroot}%{_prefix}/jetty-solr/lib/ext"
+cp -p $RPM_BUILD_DIR/slf4j-%{slfver}/jcl-over-slf4j-%{slfver}.jar "%{buildroot}%{_prefix}/jetty-solr/lib/ext"
+cp -p $RPM_BUILD_DIR/slf4j-%{slfver}/jul-to-slf4j-%{slfver}.jar "%{buildroot}%{_prefix}/jetty-solr/lib/ext"
+cp -p $RPM_BUILD_DIR/slf4j-%{slfver}/log4j-over-slf4j-%{slfver}.jar "%{buildroot}%{_prefix}/jetty-solr/lib/ext"
+cp -p $RPM_BUILD_DIR/logback-%{lver}/logback-core-%{lver}.jar "%{buildroot}%{_prefix}/jetty-solr/lib/ext"
+cp -p $RPM_BUILD_DIR/logback-%{lver}/logback-classic-%{lver}.jar "%{buildroot}%{_prefix}/jetty-solr/lib/ext"
+cp -p $RPM_BUILD_DIR/logback-%{lver}/logback-access-%{lver}.jar "%{buildroot}%{_prefix}/jetty-solr/lib/ext"
 %if "%{_collection_name}" == "collection1"
 # no need to rename
 %else
@@ -152,7 +154,14 @@ if [ "$1" -ge "1" ] ; then
 fi
 
 %changelog
-* Wed Apr 22 2013 Boogie Shafer <boogieshafer@yahoo.com>
+* Mon Apr 29 2013 Boogie Shafer <boogieshafer@yahoo.com>
+- v.4.2.1-6 tag
+- move logging jars to ext dir to match future location in 4.3.x solr releases
+- add GC printing options to startup
+- add lib dir support for solr/lib area
+- add recommeded java options from jetty's start.ini to etc/default/jetty. most commented out for now
+
+* Mon Apr 22 2013 Boogie Shafer <boogieshafer@yahoo.com>
 - v4.2.1-4 tag
 - remove logging jars from solr.war
 - adjust logback settings
