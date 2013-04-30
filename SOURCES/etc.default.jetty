@@ -1,0 +1,41 @@
+# JETTY settings for jetty-solr
+JETTY_HOME=JETTY_HOME_REPLACE/jetty-solr
+JETTY_USER=solr
+JETTY_LOGS=JETTY_LOGS_REPLACE
+JETTY_PORT=8983
+JETTY_ARGS="OPTIONS=Server,jmx,ext,resources etc/jetty-jmx.xml etc/jetty.xml etc/jetty-requestlog.xml $JETTY_ARGS"
+
+# JAVA settings for jetty-solr
+JAVA_HOME=JAVA_HOME_REPLACE/java
+JAVA_OPTIONS="-Dsolr.solr.home=$JETTY_HOME/solr $JAVA_OPTIONS"
+JAVA_OPTIONS="-Xmx1024m -Xms512m $JAVA_OPTIONS"
+JAVA_OPTIONS="-Xloggc:$JETTY_LOGS/gc.log -verbose:gc -XX:+PrintGCDateStamps -XX:+PrintGCTimeStamps -XX:+PrintGCDetails -XX:+PrintTenuringDistribution -XX:+PrintCommandLineFlags $JAVA_OPTIONS"
+#JAVA_OPTIONS="-XX:+DisableExplicitGC $JAVA_OPTIONS"
+#JAVA_OPTIONS="-XX:+UseConcMarkSweepGC $JAVA_OPTIONS"
+#JAVA_OPTIONS="-XX:ParallelCMSThreads=2 $JAVA_OPTIONS"
+#JAVA_OPTIONS="-XX:+CMSClassUnloadingEnabled $JAVA_OPTIONS"
+#JAVA_OPTIONS="-XX:+UseCMSCompactAtFullCollection $JAVA_OPTIONS"
+#JAVA_OPTIONS="-XX:CMSInitiatingOccupancyFraction=80 $JAVA_OPTIONS"
+JAVA_OPTIONS="-XX:+HeapDumpOnOutOfMemoryError -XX:HeapDumpPath=/tmp/jetty-solr-dump.hprof $JAVA_OPTIONS"
+#JAVA_OPTIONS="-XX:OnError=/bin/javaerror.sh -XX:OnOutOfMemoryError=/bin/javaerrormem.sh $JAVA_OPTIONS"
+
+# SOLR settings for jetty-solr
+SOLRBOOTCONFDIR=$JETTY_HOME/solr/collection1/conf
+SOLRCONFNAME=exampleconf
+SOLRNUMSHARDS=1
+
+# edit for zookeeper server info
+ZOOKEEPER01=fookeeper01.domain.com:2181
+ZOOKEEPER02=fookeeper02.domain.com:2181
+ZOOKEEPER03=fookeeper03.domain.com:2181
+
+# uncomment to bootstrap
+JAVA_OPTIONS="-Dbootstrap_confdir=$SOLRBOOTCONFDIR -Dcollection.configName=$SOLRCONFNAME -DnumShards=$SOLRNUMSHARDS $JAVA_OPTIONS"
+
+# enable built-in zookeeper (non-ensemble)
+# by default the built-in zookeeper runs at (JETTY_PORT + 1000)
+JAVA_OPTIONS="-DzkRun -DzkHost=localhost:9983 $JAVA_OPTIONS"
+
+# or, use remote zookeeper ensemble
+# JAVA_OPTIONS="-DzkHost=$ZOOKEEPER01,$ZOOKEEPER02,$ZOOKEEPER03 $JAVA_OPTIONS"
+
