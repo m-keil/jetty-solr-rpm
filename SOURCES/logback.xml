@@ -14,10 +14,10 @@ http://logback.qos.ch/manual/configuration.html
 
 <!-- begin appender section --> 
     <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
-    <encoder>
-      <pattern>%date{"MMM d y HH:mm:ss.SSS z [Z]"} [%thread] %-5level %logger{36} - %msg%n</pattern>
-    </encoder>
-  </appender>
+        <encoder>
+            <pattern>%date{"MMM d y HH:mm:ss.SSS z [Z]"} [%thread] %-5level %logger{36} - %msg%n</pattern>
+        </encoder>
+    </appender>
 
     <appender name="JETTY_LOG_FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
         <file>./logs/jetty.log</file>
@@ -113,6 +113,8 @@ http://logback.qos.ch/manual/configuration.html
 <!-- begin root section --> 
     <root level="INFO">
         <appender-ref ref="STDOUT" />
+    <!-- send other logging info to jetty.log -->
+        <appender-ref ref="JETTY_LOG_FILE" />
     </root>
 <!-- end root section --> 
 
