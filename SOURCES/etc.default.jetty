@@ -17,7 +17,7 @@ JAVA_OPTIONS="-Xloggc:$JETTY_LOGS/gc.log -verbose:gc -XX:+PrintGCDateStamps -XX:
 #JAVA_OPTIONS="-XX:+UseCMSCompactAtFullCollection $JAVA_OPTIONS"
 #JAVA_OPTIONS="-XX:CMSInitiatingOccupancyFraction=80 $JAVA_OPTIONS"
 JAVA_OPTIONS="-XX:+HeapDumpOnOutOfMemoryError -XX:HeapDumpPath=/tmp/jetty-solr-dump.hprof $JAVA_OPTIONS"
-#JAVA_OPTIONS="-XX:OnError=/bin/javaerror.sh -XX:OnOutOfMemoryError=/bin/javaerrormem.sh $JAVA_OPTIONS"
+JAVA_OPTIONS="-XX:OnError=$JETTY_HOME/etc/java_error.sh -XX:OnOutOfMemoryError=$JETTY_HOME/etc/java_oom.sh $JAVA_OPTIONS"
 
 # SOLR settings for jetty-solr
 SOLRBOOTCONFDIR=$JETTY_HOME/solr/collection1/conf

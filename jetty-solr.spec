@@ -2,10 +2,11 @@
 %define _logprefix /var/log/solr
 %define _javaprefix /usr/lib/jvm
 %define _collection_name collection1
+%define _notify_email youremail@yourdomain.com
 
 Name:			jetty-solr
 Version:		%{sver}
-Release:		6%{?dist}
+Release:		7%{?dist}
 Summary:		Solr
 License:		GPL
 URL:			http://lucene.apache.org/solr/
@@ -13,11 +14,13 @@ Source:			http://www.us.apache.org/dist/lucene/solr/%{version}/solr-%{version}.t
 Source1:                http://download.eclipse.org/jetty/%{jver}/dist/jetty-distribution-%{jver}.tar.gz
 Source2:                http://www.slf4j.org/dist/slf4j-%{slfver}.tar.gz
 Source3:                http://logback.qos.ch/dist/logback-%{lver}.tar.gz
-Source4:		jetty
+Source4:		etc.default.jetty
 Source5:		logback.xml
 Source6:		logback-access.xml
 Source7:		jmx.passwd
 Source8:		jmx.access
+Source9:		java_error.sh
+Source10:		java_oom.sh
 Patch0:			jetty.xml-remove_requestlog.patch
 Patch1:			solr.xml-add_lib_dir.patch
 Patch2:			jetty-requestlog.xml-configure_logback.patch
@@ -29,6 +32,7 @@ Requires(preun):	chkconfig
 Requires(preun):	initscripts
 Requires(postun):	initscripts
 Requires:		java7 => 1:1.7.0
+Requires:		mailx
 
 %description
 %{summary}
@@ -90,6 +94,8 @@ mv "%{buildroot}%{_prefix}/jetty-solr/solr/collection1" "%{buildroot}%{_prefix}/
 %__install -D -m0644  "%{SOURCE6}" %{buildroot}%{_prefix}/jetty-solr/resources/logback-access.xml
 %__install -D -m0600  "%{SOURCE7}" %{buildroot}%{_prefix}/jetty-solr/resources/jmx.passwd
 %__install -D -m0644  "%{SOURCE8}" %{buildroot}%{_prefix}/jetty-solr/resources/jmx.access
+%__install -D -m0755  "%{SOURCE9}" %{buildroot}%{_prefix}/jetty-solr/etc/java_error.sh
+%__install -D -m0755  "%{SOURCE10}" %{buildroot}%{_prefix}/jetty-solr/etc/java_oom.sh
 %__install -D -m0755  $RPM_BUILD_DIR/jetty-distribution-%{jver}/bin/jetty.sh %{buildroot}/etc/init.d/jetty-solr
 %__install -D -m0644  $RPM_BUILD_DIR/jetty-distribution-%{jver}/etc/jetty-requestlog.xml %{buildroot}%{_prefix}/jetty-solr/etc/jetty-requestlog.xml
 %__install -D -m0644  $RPM_BUILD_DIR/jetty-distribution-%{jver}/etc/jetty-jmx.xml %{buildroot}%{_prefix}/jetty-solr/etc/jetty-jmx.xml
@@ -99,6 +105,8 @@ sed -i "s|JAVA_HOME_REPLACE|%{_javaprefix}|g" "%{buildroot}/etc/default/jetty"
 sed -i "s|./logs|%{_logprefix}|g" "%{buildroot}%{_prefix}/jetty-solr/etc/jetty-requestlog.xml"
 sed -i "s|./logs|%{_logprefix}|g" "%{buildroot}%{_prefix}/jetty-solr/resources/logback.xml"
 sed -i "s|./logs|%{_logprefix}|g" "%{buildroot}%{_prefix}/jetty-solr/resources/logback-access.xml"
+sed -i "s|notify@domain.com|%{_notify_email}|g" "%{buildroot}%{_prefix}/jetty-solr/etc/java_error.sh"
+sed -i "s|notify@domain.com|%{_notify_email}|g" "%{buildroot}%{_prefix}/jetty-solr/etc/java_oom.sh"
 rm "%{buildroot}%{_prefix}/jetty-solr/etc/logging.properties"
 
 %if "%{_collection_name}" == "collection1"
