@@ -6,7 +6,7 @@
 
 Name:			jetty-solr
 Version:		%{sver}
-Release:		7%{?dist}
+Release:		1%{?dist}
 Summary:		Solr
 License:		GPL
 URL:			http://lucene.apache.org/solr/
@@ -21,7 +21,7 @@ Source7:		jmx.passwd
 Source8:		jmx.access
 Source9:		java_error.sh
 Source10:		java_oom.sh
-Patch0:			jetty.xml-remove_requestlog.patch
+Patch0:			jetty.xml-remove_requestlog_log4j.patch
 Patch1:			solr.xml-add_lib_dir.patch
 Patch2:			jetty-requestlog.xml-configure_logback.patch
 Patch3:			jetty-jmx.xml-enable_rmi_tcp1099.patch
@@ -46,18 +46,6 @@ Requires:		mailx
 %setup -q -D -T -b 2 -n slf4j-%{slfver}
 %setup -q -D -T -b 3 -n logback-%{lver}
 
-# process to remove slf4j jars from solr.war
-# should be unnecessary in 4.3+
-mkdir $RPM_BUILD_DIR/tmp
-mv $RPM_BUILD_DIR/solr-%{version}/example/webapps/solr.war $RPM_BUILD_DIR/tmp
-cd $RPM_BUILD_DIR/tmp
-jar xf solr.war
-rm solr.war
-# remove old slf4j jars
-rm $RPM_BUILD_DIR/tmp/WEB-INF/lib/*slf4j*.jar
-jar cf solr.war *
-cp $RPM_BUILD_DIR/tmp/solr.war $RPM_BUILD_DIR/solr-%{version}/example/webapps/solr.war
-
 %build
 
 %install
@@ -69,9 +57,9 @@ cp -pr $RPM_BUILD_DIR/solr-%{version}/dist "%{buildroot}%{_prefix}"
 cp -pr $RPM_BUILD_DIR/solr-%{version}/docs "%{buildroot}%{_prefix}"
 cp -pr $RPM_BUILD_DIR/solr-%{version}/licenses "%{buildroot}%{_prefix}"
 %__install -d "%{buildroot}%{_prefix}/jetty-solr"
-%__install -d "%{buildroot}%{_prefix}/jetty-solr/lib/ext"
 %__install -d "%{buildroot}%{_prefix}/jetty-solr/resources"
 cp -pr $RPM_BUILD_DIR/solr-%{version}/example/* "%{buildroot}%{_prefix}/jetty-solr"
+rm %{buildroot}%{_prefix}/jetty-solr/lib/ext/*.jar
 cp -p $RPM_BUILD_DIR/slf4j-%{slfver}/slf4j-api-%{slfver}.jar "%{buildroot}%{_prefix}/jetty-solr/lib/ext"
 cp -p $RPM_BUILD_DIR/slf4j-%{slfver}/jcl-over-slf4j-%{slfver}.jar "%{buildroot}%{_prefix}/jetty-solr/lib/ext"
 cp -p $RPM_BUILD_DIR/slf4j-%{slfver}/jul-to-slf4j-%{slfver}.jar "%{buildroot}%{_prefix}/jetty-solr/lib/ext"
@@ -162,8 +150,12 @@ if [ "$1" -ge "1" ] ; then
 fi
 
 %changelog
+* Tue May 7 2013 Boogie Shafer <boogieshafer@yahoo.com>
+- v4.3.0-1 tag
+- remove solr bundled log4j 1.2.16 and slf4j 1.6.6 jars, replace with logback 1.0.12 and slf4j 1.7.5 jars
+
 * Mon Apr 29 2013 Boogie Shafer <boogieshafer@yahoo.com>
-- v.4.2.1-6 tag
+- v4.2.1-6 tag
 - move logging jars to ext dir to match future location in 4.3.x solr releases
 - add GC printing options to startup
 - add lib dir support for solr/lib area
