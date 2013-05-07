@@ -57,7 +57,6 @@ cp -pr $RPM_BUILD_DIR/solr-%{version}/dist "%{buildroot}%{_prefix}"
 cp -pr $RPM_BUILD_DIR/solr-%{version}/docs "%{buildroot}%{_prefix}"
 cp -pr $RPM_BUILD_DIR/solr-%{version}/licenses "%{buildroot}%{_prefix}"
 %__install -d "%{buildroot}%{_prefix}/jetty-solr"
-%__install -d "%{buildroot}%{_prefix}/jetty-solr/resources"
 cp -pr $RPM_BUILD_DIR/solr-%{version}/example/* "%{buildroot}%{_prefix}/jetty-solr"
 rm %{buildroot}%{_prefix}/jetty-solr/lib/ext/*.jar
 cp -p $RPM_BUILD_DIR/slf4j-%{slfver}/slf4j-api-%{slfver}.jar "%{buildroot}%{_prefix}/jetty-solr/lib/ext"
@@ -96,6 +95,7 @@ sed -i "s|./logs|%{_logprefix}|g" "%{buildroot}%{_prefix}/jetty-solr/resources/l
 sed -i "s|notify@domain.com|%{_notify_email}|g" "%{buildroot}%{_prefix}/jetty-solr/etc/java_error.sh"
 sed -i "s|notify@domain.com|%{_notify_email}|g" "%{buildroot}%{_prefix}/jetty-solr/etc/java_oom.sh"
 rm "%{buildroot}%{_prefix}/jetty-solr/etc/logging.properties"
+rm "%{buildroot}%{_prefix}/jetty-solr/resources/log4j.properties"
 
 %if "%{_collection_name}" == "collection1"
 # no need to rename
