@@ -1,8 +1,8 @@
 #!/bin/sh
-solrversion="4.2.1"
-jettyversion="8.1.8.v20121106"
+solrversion="4.3.0"
+jettyversion="8.1.10.v20130312"
 slf4jversion="1.7.5"
-logbackversion="1.0.11"
+logbackversion="1.0.12"
 
 rm -rf BUILD BUILDROOT tmp || true
 mkdir -p BUILD BUILDROOT RPMS SRPMS
