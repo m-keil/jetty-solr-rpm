@@ -10,8 +10,10 @@ goal is a serviceable base rpm for deployment of solr on jetty
 
 Logging is handled by logback framework
   -logging for jetty, solr, and the local zookeeper services is using similar configuration settings (rotation, formatting, etc)
-  -GC logging is not handled by logback
-  -jetty start log is not handled by logback
+  -RFC3339 datetime format + local TZ label for service log events
+  -combined format for jetty HTTP request logs
+  NOTE: GC logging is not handled by logback
+  NOTE: jetty start log is not handled by logback
 
 JMX interface is enabled on TCP port 1099 with simple authentication
   -read access credentials: monitorRole/mrpasswd
