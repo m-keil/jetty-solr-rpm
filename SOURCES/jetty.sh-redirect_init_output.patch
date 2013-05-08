@@ -1,0 +1,11 @@
+--- bin/jetty.sh.dist	2013-05-08 11:12:41.938992000 -0700
++++ bin/jetty.sh	2013-05-08 11:13:50.365439000 -0700
+@@ -445,7 +445,7 @@
+         chown "$JETTY_USER" "$JETTY_PID"
+         # FIXME: Broken solution: wordsplitting, pathname expansion, arbitrary command execution, etc.
+         su - "$JETTY_USER" -c "
+-          exec ${RUN_CMD[*]} --daemon &
++          exec ${RUN_CMD[*]} --daemon > /dev/null 2>&1 &
+           disown \$!
+           echo \$! > '$JETTY_PID'"
+       else
