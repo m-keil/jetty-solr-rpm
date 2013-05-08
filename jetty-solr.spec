@@ -152,9 +152,10 @@ if [ "$1" -ge "1" ] ; then
 fi
 
 %changelog
-* Tue May 7 2013 Boogie Shafer <boogieshafer@yahoo.com>
-- v4.3.0-1 tag
+* Wed May 8 2013 Boogie Shafer <boogieshafer@yahoo.com>
+- v4.3.0-2 tag
 - remove solr bundled log4j 1.2.16 and slf4j 1.6.6 jars, replace with logback 1.0.12 and slf4j 1.7.5 jars
+- fix jetty init script hangs for remote restarts via ssh
 
 * Mon Apr 29 2013 Boogie Shafer <boogieshafer@yahoo.com>
 - v4.2.1-6 tag

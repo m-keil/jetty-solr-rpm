@@ -15,7 +15,7 @@ Logging is handled by logback framework
   NOTE: GC logging is not handled by logback
   NOTE: jetty start log is not handled by logback
 
-JMX interface is enabled on TCP port 1099 with simple authentication
+JMX interface is enabled in a firewall friendly manner on TCP port 1099 with simple authentication
   -read access credentials: monitorRole/mrpasswd
   -read/write access credentials: controlRole/crpasswd
   -reference: http://wiki.eclipse.org/Jetty/Tutorial/JMX
