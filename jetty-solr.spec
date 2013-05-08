@@ -6,7 +6,7 @@
 
 Name:			jetty-solr
 Version:		%{sver}
-Release:		1%{?dist}
+Release:		2%{?dist}
 Summary:		Solr
 License:		GPL
 URL:			http://lucene.apache.org/solr/
@@ -25,6 +25,7 @@ Patch0:			jetty.xml-remove_requestlog_log4j.patch
 Patch1:			solr.xml-add_lib_dir.patch
 Patch2:			jetty-requestlog.xml-configure_logback.patch
 Patch3:			jetty-jmx.xml-enable_rmi_tcp1099.patch
+Patch4:			jetty.sh-redirect_init_output.patch
 BuildRoot:		%(mktemp -ud %{_tmppath}/%{name}-%{version}-%{release}-XXXXXX)
 Requires(pre):		shadow-utils
 Requires(post):		chkconfig
@@ -43,6 +44,7 @@ Requires:		mailx
 %setup -q -D -T -b 1 -n jetty-distribution-%{jver}
 %patch2 -p0
 %patch3 -p0
+%patch4 -p0
 %setup -q -D -T -b 2 -n slf4j-%{slfver}
 %setup -q -D -T -b 3 -n logback-%{lver}
 
