@@ -6,7 +6,7 @@
 
 Name:			jetty-solr
 Version:		%{sver}
-Release:		2%{?dist}
+Release:		3%{?dist}
 Summary:		Solr
 License:		GPL
 URL:			http://lucene.apache.org/solr/
@@ -152,33 +152,38 @@ if [ "$1" -ge "1" ] ; then
 fi
 
 %changelog
+* Thu May 14 2013 Boogie Shafer <boogieshafer@yahoo.com>
+- 4.3.0-3
+- upgrade logback components to 1.0.13 release
+- add java option for gc.log rotation
+
 * Wed May 8 2013 Boogie Shafer <boogieshafer@yahoo.com>
-- v4.3.0-2 tag
+- 4.3.0-2
 - remove solr bundled log4j 1.2.16 and slf4j 1.6.6 jars, replace with logback 1.0.12 and slf4j 1.7.5 jars
 - fix jetty init script hangs for remote restarts via ssh
 
 * Mon Apr 29 2013 Boogie Shafer <boogieshafer@yahoo.com>
-- v4.2.1-6 tag
+- 4.2.1-6
 - move logging jars to ext dir to match future location in 4.3.x solr releases
 - add GC printing options to startup
 - add lib dir support for solr/lib area
 - add recommeded java options from jetty's start.ini to etc/default/jetty. most commented out for now
 
 * Mon Apr 22 2013 Boogie Shafer <boogieshafer@yahoo.com>
-- v4.2.1-4 tag
+- 4.2.1-4
 - remove logging jars from solr.war
 - adjust logback settings
 
 * Fri Apr 19 2013 Boogie Shafer <boogieshafer@yahoo.com>
-- v4.2.1-3 tag
+- 4.2.1-3
 - configure JMX support in jetty
 
 * Thu Apr 18 2013 Boogie Shafer <boogieshafer@yahoo.com>
-- v4.2.1-2 tag
+- 4.2.1-2
 - switch logging to logback
 
 * Wed Apr 17 2013 Boogie Shafer <boogieshafer@yahoo.com>
-- v4.2.1-1 tag
+- 4.2.1-1
 - make collection name configurable
 - build using 4.2.1 solr binary release
 - change default installation location to /opt/solr

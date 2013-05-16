@@ -2,7 +2,7 @@
 solrversion="4.3.0"
 jettyversion="8.1.10.v20130312"
 slf4jversion="1.7.5"
-logbackversion="1.0.12"
+logbackversion="1.0.13"
 
 rm -rf BUILD BUILDROOT tmp || true
 mkdir -p BUILD BUILDROOT RPMS SRPMS

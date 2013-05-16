@@ -3,7 +3,8 @@ TODO items for rpm packaging
 -resolve issues with logging and filenaming
     start.log - TODO - fix naming syntax, probably need to rebuild start.jar.
     problem with using jetty-logging.properties to specify slf4j - TODO
-    log rotation for gc.log - TODO
+    log rotation for gc.log - DONE
+    logging page in solr admin UI doesnt work
 
 -corrective action scripts for OOM and ERROR conditions
     restart service?
