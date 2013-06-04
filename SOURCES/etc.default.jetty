@@ -10,6 +10,7 @@ JETTY_ARGS="OPTIONS=Server,jmx,ext,resources etc/jetty-jmx.xml etc/jetty.xml etc
 JAVA_HOME=JAVA_HOME_REPLACE/java
 JAVA_OPTIONS="-Dsolr.solr.home=$JETTY_HOME/solr $JAVA_OPTIONS"
 JAVA_OPTIONS="-Xmx1024m -Xms512m $JAVA_OPTIONS"
+JAVA_OPTIONS="-XX:PermSize=128m -XX:MaxPermSize=256m $JAVA_OPTIONS"
 JAVA_OPTIONS="-Xloggc:$JETTY_LOGS/gc.log -verbose:gc -XX:+PrintGCDateStamps -XX:+PrintGCDetails -XX:+PrintTenuringDistribution -XX:+PrintCommandLineFlags -XX:+PrintHeapAtGC $JAVA_OPTIONS"
 JAVA_OPTIONS="-XX:+UseGCLogFileRotation -XX:NumberOfGCLogFiles=5 -XX:GCLogFileSize=10m $JAVA_OPTIONS"
 JAVA_OPTIONS="-XX:+HeapDumpOnOutOfMemoryError -XX:HeapDumpPath=/tmp/jetty-solr-dump.hprof $JAVA_OPTIONS"
