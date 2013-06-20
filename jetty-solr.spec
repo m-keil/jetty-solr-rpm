@@ -6,7 +6,7 @@
 
 Name:			jetty-solr
 Version:		%{sver}
-Release:		4%{?dist}
+Release:		1%{?dist}
 Summary:		Solr
 License:		GPL
 URL:			http://lucene.apache.org/solr/
@@ -154,6 +154,10 @@ if [ "$1" -ge "1" ] ; then
 fi
 
 %changelog
+* Thu Jun 20 2013 Boogie Shafer <boogieshafer@yahoo.com>
+- 4.3.1-1
+- changed java GC to CMS
+
 * Fri Jun 14 2013 Boogie Shafer <boogieshafer@yahoo.com>
 - 4.3.0-4
 - rename /etc/default/jetty to /etc/default/jetty-solr

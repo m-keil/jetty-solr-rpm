@@ -17,8 +17,8 @@ JAVA_OPTIONS="-XX:+HeapDumpOnOutOfMemoryError -XX:HeapDumpPath=/tmp/jetty-solr-d
 JAVA_OPTIONS="-XX:OnError=$JETTY_HOME/etc/java_error.sh -XX:OnOutOfMemoryError=$JETTY_HOME/etc/java_oom.sh $JAVA_OPTIONS"
 
 # some additional java GC options suggested by jetty
-#JAVA_OPTIONS="-XX:+DisableExplicitGC $JAVA_OPTIONS"
-#JAVA_OPTIONS="-XX:+UseConcMarkSweepGC $JAVA_OPTIONS"
+JAVA_OPTIONS="-XX:+DisableExplicitGC $JAVA_OPTIONS"
+JAVA_OPTIONS="-XX:+UseConcMarkSweepGC $JAVA_OPTIONS"
 #JAVA_OPTIONS="-XX:ParallelCMSThreads=2 $JAVA_OPTIONS"
 #JAVA_OPTIONS="-XX:+CMSClassUnloadingEnabled $JAVA_OPTIONS"
 #JAVA_OPTIONS="-XX:+UseCMSCompactAtFullCollection $JAVA_OPTIONS"
