@@ -22,7 +22,7 @@ JAVA_OPTIONS="-XX:+UseConcMarkSweepGC $JAVA_OPTIONS"
 #JAVA_OPTIONS="-XX:ParallelCMSThreads=2 $JAVA_OPTIONS"
 #JAVA_OPTIONS="-XX:+CMSClassUnloadingEnabled $JAVA_OPTIONS"
 #JAVA_OPTIONS="-XX:+UseCMSCompactAtFullCollection $JAVA_OPTIONS"
-#JAVA_OPTIONS="-XX:CMSInitiatingOccupancyFraction=80 $JAVA_OPTIONS"
+JAVA_OPTIONS="-XX:CMSInitiatingOccupancyFraction=80 $JAVA_OPTIONS"
 
 # other solr GC tuning suggestions
 # ref: https://wiki.apache.org/solr/ShawnHeisey#GC_Tuning
