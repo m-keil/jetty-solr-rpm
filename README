@@ -1,6 +1,6 @@
 RPM build for Solr using builtin Jetty and logback logging framework
 
-solr version 4.3.0
+solr version 4.4.0
 jetty version 8.1.10.v20130312
 slf4j version 1.7.5
 logback version 1.0.13
