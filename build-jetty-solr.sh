@@ -1,5 +1,5 @@
 #!/bin/sh
-solrversion="4.3.1"
+solrversion="4.4.0"
 jettyversion="8.1.10.v20130312"
 slf4jversion="1.7.5"
 logbackversion="1.0.13"
